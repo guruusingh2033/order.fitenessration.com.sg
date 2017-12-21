@@ -1,0 +1,58 @@
+@import '../../styles/_header'
+:host
+	.body
+		.loading
+			font-size 17px
+			float left
+		desktop_layout_side-column 'form' 'order'
+		calendar
+			m-margin-left -20px
+		form
+			d-width 455px
+			input[type="submit"]
+				display none
+		.field
+			.field-container
+				field-text()
+			&.card-number
+				r-margin-bottom 37px 20px
+				input[type="text"], .field-container
+					background white no-repeat center right 10px
+					r-image '/app/common/images/credit-card.%.png' 34 22
+			&.expiry
+				display flex
+				flex-wrap wrap
+				align-items center
+				justify-content center
+				label
+					width 100%
+				label + input[type="text"]
+					margin-right 5px
+				input[type="text"], .field-container
+					r-width 84px 40px
+					flex 1 0 0
+					margin-right 5px
+					&:last-child
+						margin-left 5px
+						margin-right 0
+		.field-group
+			display flex
+			.field
+				flex 1 1 0
+				&:not(:first-child)
+					margin-left 10px
+		.error
+			color #D0021B
+			font-size 15px
+			margin-top 12px
+		order >>>
+			@media desktop
+				order_side-summary_desktop()
+			m-display none
+	.footer >
+		desktop_layout_single-button-footer '.submit'
+		.submit
+			&.loading
+				opacity .5
+			@media mobile
+				dark-footer-item()

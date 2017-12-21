@@ -1,0 +1,41 @@
+@import '_header'
+@import '../common/styles/_popup'
+
+
+base()
+html
+	background-color $background-b-color
+.field
+	field()
+	label
+		color #6A6A6A
+force-device = 'mobile'
+.popup
+	.field
+		field()
+force-device = null
+.button
+	button()
+.sections-nav
+	display flex
+	border-bottom 1px solid #DEE0E4
+	font-weight bold
+	li
+		margin-bottom -1px
+		@media desktop
+			width 145px
+			font-size 17px
+		@media mobile
+			flex-grow 1
+		&.active
+			border-bottom 3px solid $foreground-color
+		&:not(.active)
+			a
+				color $secondary-text-color
+		a
+			height 40px
+			display block
+			font-family 'League Spartan'
+			line-height @height * 1.08
+			text-transform uppercase
+			text-align center

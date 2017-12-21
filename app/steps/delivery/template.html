@@ -1,0 +1,93 @@
+<div class="body">
+  <form #form>
+    <div class="section name" *ngIf="user.profile.firstName && user.profile.surname">
+      {{user.profile.firstName}} {{user.profile.surname}}
+    </div>
+    <div class="section phone-number" *ngIf="user.profile.phoneNumber">
+      {{user.profile.phoneNumber}}
+    </div>
+    <div class="field-group" *ngIf="!(user.profile.firstName && user.profile.surname)">
+      <div class="field">
+        <label>First name</label>
+        <input type="text" [(ngModel)]="order.deliveryOptions.firstName" name="firstName" required />
+      </div>
+      <div class="field">
+        <label>Surname</label>
+        <input type="text" [(ngModel)]="order.deliveryOptions.surname" name="surname" required />
+      </div>
+    </div>
+    <div class="field" *ngIf="!user.profile.phoneNumber">
+      <label>Contact number</label>
+      <input type="text" [(ngModel)]="order.deliveryOptions.contactNumber" name="contactNumber" required />
+    </div>
+    <div class="field-group delivery-type">
+      <div class="field checkbox">
+        <label (click)="order.deliveryOptions.selfCollection = false">Delivery</label>
+        <span class="checkbox" [class.checked]="order.deliveryOptions.selfCollection === false" (click)="order.deliveryOptions.selfCollection = false"></span>
+      </div>
+      <div class="field checkbox">
+        <label (click)="order.deliveryOptions.selfCollection = true">Self-collection</label>
+        <span class="checkbox" [class.checked]="order.deliveryOptions.selfCollection === true" (click)="order.deliveryOptions.selfCollection = true"></span>
+      </div>
+      <p class="note">For self-collection from our address, there will be no delivery fee.</p>
+    </div>
+    <div class="section delivery-address" [class.disabled]="order.deliveryOptions.selfCollection">
+      <div *ngIf="!user.profile.deliveryAddresses.length">
+        <div class="field">
+          <label>Delivery address</label>
+          <textarea placeholder="Please specify building/condo/estate name if applicable." [(ngModel)]="order.deliveryOptions.address" name="deliveryAddress" [required]="!order.deliveryOptions.selfCollection"></textarea>
+        </div>
+        <div class="field postal-code">
+          <label>Postal Code</label>
+          <input type="text" [(ngModel)]="order.deliveryOptions.postalCode" name="postalCode" [required]="!order.deliveryOptions.selfCollection" />
+        </div>
+        <p class="note">For delivery to Sentosa addresses, there will be an additional $10 surcharge.</p>
+      </div>
+      <div *ngIf="user.profile.deliveryAddresses.length" class="address-selection">
+        <ul>
+          <li *ngFor="let deliveryAddress of user.profile.deliveryAddresses; let i = index" (click)="selectedDeliveryAddress = i" [class.selected]="i == selectedDeliveryAddress">
+            <input type="radio" name="deliveryAddress" [checked]="i == selectedDeliveryAddress" [value]="i">
+            <span class="address">{{deliveryAddress.address}}</span>
+            <span class="postal-code">{{deliveryAddress.postalCode}}</span>
+          </li>
+        </ul>
+        <div class="add-wrapper">
+          <button type="button" class="add" (click)="addDeliveryAddress()">Add delivery address</button>
+          <p class="note">For delivery to Sentosa addresses, there will be an additional $10 surcharge.</p>
+        </div>
+      </div>
+    </div>
+    <div class="field-group" >
+      <div class="field fulfillment-date">
+        <label>Fulfillment date</label>
+        <input type="text" (focus)="showCalendar = true; $event.target.blur()" value="{{fulfillmentDate()}}" name="fulfillmentDate" required>
+        <calendar *ngIf="showCalendar" (datewasselected)="selectDate($event)" [dateset]="dateSet()" [selecteddate]="order.deliveryOptions.date"></calendar>
+      </div>
+      <div class="field fulfillment-time">
+        <label>Fulfillment time</label>
+        <select name="fulfillmentTime" [(ngModel)]="order.deliveryOptions.time" required >
+          <option></option>
+          <option [ngValue]="timeSlot" *ngFor="let timeSlot of _timeSlots()">{{timeSlot}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="field checkbox disposable-cutlery">
+      <label>Disposable cutlery</label>
+      <span class="checkbox" [class.checked]="order.deliveryOptions.disposableCutlery" (click)="order.deliveryOptions.disposableCutlery = !order.deliveryOptions.disposableCutlery"></span>
+      <p class="note">One set per meal.</p>
+    </div>
+    <div class="field">
+      <label>Delivery note</label>
+      <textarea placeholder="ie: Please give me a call an hour before arrival." [(ngModel)]="order.deliveryOptions.note" name="note"></textarea>
+      <p class="note">Requests for specific delivery time will be subject to traffic conditions and delivery districts.</p>
+    </div>
+    <input #submitButton type="submit" style="display:none">
+  </form>
+  <div class="summary">
+    <order [order]="order" delivery-info="false"></order>
+  </div>
+</div>
+<div class="footer">
+  <button (click)="usePromoCode()" *ngIf="!order.promotion" class="use-promo-code">Use promo code</button>
+  <a href="#" class="next" (click)="asdf(); false">Proceed to checkout</a>
+</div>

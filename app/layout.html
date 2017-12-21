@@ -1,0 +1,6 @@
+<div class="header">
+  <a *ngIf="showPrev" (click)="prev(); false" href="#" class="prev">Previous</a>
+  <span class="step">{{stepTitle}}</span>
+  <a [href]="config.websiteUrl" class="close">Close</a>
+</div>
+<div #stepPlaceholder></div>

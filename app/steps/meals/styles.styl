@@ -1,0 +1,144 @@
+@import '../../styles/_header';
+
+:host
+	.types .type .meals
+		@media mobile
+			layout_item-list()
+	.body
+		desktop_layout_side-column '.types' '.summary'
+		.sections-nav
+			display flex
+			border-bottom 1px solid #DEE0E4
+			font-weight bold
+			@media desktop
+				float left
+				margin-bottom 10px
+			@media mobile
+				margin 0 -20px
+			li
+				margin-bottom -1px
+				@media desktop
+					width 145px
+					font-size 17px
+				@media mobile
+					flex-grow 1
+				&.active
+					border-bottom 3px solid $foreground-color
+				&:not(.active)
+					a
+						color $secondary-text-color
+				a
+					height 40px
+					display block
+					font-family 'League Spartan'
+					line-height @height * 1.08
+					text-transform uppercase
+					text-align center
+		.types
+			.type
+				&:not(.active)
+					display none
+				h3
+					display none
+				.meals
+					> li
+						overflow hidden	
+						picture
+							image()
+					@media desktop
+						display flex
+						flex-wrap wrap
+						> li
+							&:nth-child(2n)
+								margin-left 37px
+							margin-bottom 30px
+							position relative
+							overflow hidden
+							color #6A6A6A
+							width 290px
+							picture
+								display block
+								square 290px
+								margin-bottom 10px
+								// background-color white
+							.name
+								display block
+								margin-bottom 10px
+								font-size 20px
+								font-weight bold
+							.sides
+								padding-bottom 10px
+								margin-bottom 10px
+								border-bottom 1px solid #979797
+								font-size 14px
+							.details
+								font-size 15.56px
+								color #A0A0A0
+							.quantity
+								quantity-picker()
+								width 107px
+								float right
+					@media mobile
+						margin-top 30px
+						> li
+							height 150px
+							padding 13px 0 91px 113px
+							position relative
+							margin-bottom 10px
+							picture
+								square 100px
+								border none
+								outline none
+								border-right 1px solid #DEE0E4
+								position absolute
+								left 0
+								top 0
+								// background url(/app/common/images/placeholder.png) no-repeat center
+							.name
+								display block
+								margin-bottom 10px
+								font-size 14px
+								font-weight bold
+							.sides
+								font-size 11px
+							.details
+								size 50% 50px
+								border-top 1px solid #DEE0E4
+								border-right 1px solid #DEE0E4
+								position absolute
+								bottom 0
+								left 0
+								text-align center
+								line-height @height 
+							.quantity
+								quantity-picker()
+								padding 0 16px
+								width 50%
+								height 50px
+								position absolute
+								bottom 0
+								right 0
+								border-top 1px solid #DEE0E4
+		.summary >>>
+			@media desktop
+				bundle
+					desktop_look_bundle_side-summary()
+			@media mobile
+				display none
+
+	.footer
+		.meals
+			padding 10px 30px
+			color #A0A0A0
+			background-color white
+		.remaining-meals
+			font-weight bold
+		button.view-meals
+			@media desktop
+				display none
+			@media mobile
+				dark-footer-item()
+				background-color $accent-b-background-color
+				background-image url(/app/common/images/expand.accent-foreground.png)
+				&.open
+					background-image url(/app/common/images/contract.accent-foreground.png)

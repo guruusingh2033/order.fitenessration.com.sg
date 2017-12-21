@@ -1,0 +1,28 @@
+<div class="body">
+  <h3>Tell us more about yourself.</h3>
+  <form>
+    <div class="field">
+      <label>Occupation</label>
+      <input [(ngModel)]="survey.occupation" placeholder="entrepreneur, activist, taster, artist" name="occupation" type="text"/>
+    </div>
+    <div class="field">
+      <label>Favourite activity to do on a bright Sunday afternoon:</label>
+      <textarea [(ngModel)]="survey.favoriteActivity" name="favoriteActivity" placeholder="eg. take long walks by the beach"></textarea>
+    </div>
+    <div class="field">
+      <label>I care most about:</label>
+      <textarea [(ngModel)]="survey.careMostAbout" name="careMostAbout" placeholder="eg. inspiring the world to do good"></textarea>
+    </div>
+    <div class="field">
+      <label>If I had a million dollars:</label>
+      <textarea [(ngModel)]="survey.millionDollars" name="millionDollars" placeholder="eg. I would travel the world"></textarea>
+    </div>
+    <div class="field">
+      <label>My goals are:</label>
+      <textarea [(ngModel)]="survey.goals" name="goals" placeholder="eg. to be the best of myself every single day"></textarea>
+    </div>
+  </form>
+</div>
+<div class="footer">
+	<a href="#" (click)="submit(); false">Submit</a>
+</div>

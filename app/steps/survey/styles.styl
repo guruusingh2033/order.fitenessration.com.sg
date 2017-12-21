@@ -1,0 +1,41 @@
+@import '../../styles/_header'
+:host
+	.body
+		m-padding 0
+		> h3
+			margin 0 0 25px 0
+			r-font-size 23.68px 18px
+			text-align center
+		.field
+			m-padding 0 15px
+			&:not(:first-child)
+				border-top 1px solid #D9D9D9
+				m-padding-top 10px
+				m-margin-top 10px
+			label
+				margin-bottom 15px
+				white-space normal
+			input[type="text"], textarea
+				border 1px solid #B7BBC0
+				border-radius 3px
+			textarea
+				width 100%
+				height 114px
+		@media desktop
+			width 789px
+			form
+				height 541px
+				display flex
+				flex-direction column
+				flex-wrap wrap
+				align-content space-between
+				.field
+					width 385px
+					border-top 1px solid #D9D9D9
+					margin-bottom 10px
+					padding-top 10px
+	.footer >
+		desktop_layout_single-button-footer 'a'
+		@media mobile
+			a
+				dark-footer-item()

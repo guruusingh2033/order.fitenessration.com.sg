@@ -1,0 +1,68 @@
+@import '../../styles/_header'
+:host
+	.body
+		.items
+			+on-mobile()
+				layout_item-list()
+	.body
+		.items
+			+on-desktop()
+				display flex
+				flex-wrap wrap
+				justify-content center
+				align-items flex-start
+			> li
+				+on-desktop()
+					container()
+					width 385px
+					font-size 16.24px
+					margin 0 17px 17px 0
+					bundle-premium
+						display flex
+						font-size 16px
+						padding 19px 30px
+						border-bottom 1px solid $border-color
+						>>> .value
+							margin-left auto
+							color #3a3e42
+				+on-mobile
+					&:not(:first-child)
+						margin-top 10px
+					padding 0
+				bundle-summary
+					bundle-summary_item()
+					border-bottom 1px solid $border-color
+				bundle-allergies
+					bundle-allergies_item()
+					border-bottom 1px solid $border-color
+				> .subtotal
+					r-padding2 19px 30px 13px 20px
+					border-bottom 1px solid $border-color
+					display flex
+					.value
+						margin-left auto
+						color #A0A0A0
+					&.total
+						font-weight bold
+						.value
+							color #6A6A6A
+				.update-allergy-note
+					width 100%
+					display block
+					border-bottom-left-radius 8px
+					border-bottom-right-radius 8px
+					font-family 'League Spartan'
+					font-weight bold
+					text-align center
+					text-transform uppercase
+					+on-desktop()
+						height 64.3px
+						vertically-centered-text()
+					+on-mobile()
+						height 48px
+						vertically-centered-text()
+	.footer
+		desktop_layout_double-button-footer '.add-another-bundle' '.next'
+		.add-another-bundle
+			dark-footer-item $accent-b-background-color
+			r-image '/app/common/images/plus.%-accent-foreground.png' 29 12

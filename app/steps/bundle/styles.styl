@@ -1,0 +1,61 @@
+@import '../../styles/_header';
+:host
+	.body
+		.bundles
+			layout_item-list()
+			flex-wrap wrap
+			> li
+				position relative
+				&, &.selected
+					background-image-colors({'000000':$text-color})
+				.name
+					item-list-name()
+				.description
+					item-list-description()
+				.perks
+					background-color #EC5623
+					color white
+					position absolute
+					bottom 0
+					left 0
+					right 0
+					r-height 46px 18px
+					r-font-size 15px 11px
+					border-radius 8px
+					display flex
+					justify-content center
+					align-items center
+				&.selected .perks
+					border-radius 0
+				@media desktop
+					height 331px 
+					padding-top 119px
+					background-position center top 40px
+					&, &.selected
+						background-size 51px 60px
+					&.selected
+						padding-top @padding-top - 9px
+						background-position center top 40px - 9px
+						.perks
+							bottom -9px
+					.price
+						display block
+						margin 17px 0 22px
+						font-size 36px
+						font-weight bold
+				@media mobile
+					height 89px
+					&, &.selected
+						background-size 35px 41px
+					&.selected .price
+						top 13px
+						right 15px
+					&.selected
+						.perks
+							bottom -4px
+					.price
+						font-size 17px
+						font-weight bold
+						position absolute
+						top 17px
+						right 19px

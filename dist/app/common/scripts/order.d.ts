@@ -1,0 +1,10 @@
+export declare function orderFlagged(order: any, api: any): boolean;
+export declare function orderFulfillmentDays(order: any, api: any): number;
+export declare function excludeAvailabilityDate(opts: any): (date: any) => boolean;
+export declare function orderTotalMeals(order: any): any;
+export declare function bundlePrice(bundle: any): number;
+export declare function bundleTotal(bundle: any): number;
+export declare function orderSubtotal(order: any): number;
+export declare function orderTotal(order: any): number;
+export declare function orderLocationSurcharge(order: any, api: any): number;
+export declare function orderDeliveryFee(order: any, api: any): number;

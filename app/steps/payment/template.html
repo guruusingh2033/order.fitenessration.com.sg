@@ -1,0 +1,46 @@
+<div class="body">
+  <div *ngIf="showCalendar">
+    <p>Please select a new delivery date.</p>
+    <div class="field-group" >
+      <div class="field fulfillment-date">
+        <label>Fulfillment date</label>
+        <input type="text" (focus)="showCalendar = true; $event.target.blur()" [(ngModel)]="order.deliveryOptions.date" />
+        <calendar *ngIf="showCalendar" (datewasselected)="selectDate($event)" [dateset]="dateSet()" [selecteddate]="order.deliveryOptions.date"></calendar>
+      </div>
+      <div class="field">
+        <label>Fulfillment time</label>
+        <select [(ngModel)]="order.deliveryOptions.time">
+          <option></option>
+          <option [ngValue]="timeSlot" *ngFor="let timeSlot of _timeSlots()">{{timeSlot}}</option>
+        </select>
+      </div>
+    </div>
+    <a href="#" class="submit" (click)="pay(); false">Submit order</a>
+  </div>
+  <form [hidden]="showCalendar || loading" id="checkout-form">
+    <div class="field card-number">
+      <label>Card number</label>
+      <div class="field-container" id="card-number"></div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label>CVV</label>
+        <div class="field-container" id="cvv"></div>
+      </div>
+      <div class="field expiry">
+        <label>Expiry</label>
+        <div class="field-container" id="expiration-month"></div>/
+        <div class="field-container" id="expiration-year"></div>
+      </div>
+    </div>
+    <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+    <input type="submit">
+  </form>
+  <div class="loading" *ngIf="loading">
+    <p>Loading...</p>
+  </div>
+  <order [order]="order"></order>
+</div>
+<div class="footer">
+	<a href="#" class="submit" [class.loading]="showLoading" (click)="pay(); false">{{showLoading ? 'Loading...' : 'Submit order'}}</a>
+</div>

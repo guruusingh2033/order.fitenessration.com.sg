@@ -1,0 +1,28 @@
+<ul class="bundles">
+  <li *ngFor="let bundle of order.bundles">
+    <bundle [bundle]="bundle"></bundle>
+  </li>
+</ul>
+<div class="order-info">
+  <div class="delivery-date-time"><span class="date">{{dateFormat(order.deliveryOptions.date)}}</span><span class="time">{{order.deliveryOptions.time}}</span></div>
+  <div class="delivery-address"><span class="address">{{order.deliveryOptions.address}}</span><span class="postal-code">{{order.deliveryOptions.postalCode}}</span></div>
+  <div class="extra">
+    <div class="line">
+      <label>Disposable cutlery:</label><span class="value">{{order.deliveryOptions.disposableCutlery ? 'Yes' : 'No'}}</span>
+    </div>
+    <div class="line" *ngIf="order.deliveryOptions.note">
+      <label>Delivery note:</label><span class="value">{{order.deliveryOptions.note}}</span>
+    </div>
+  </div>
+  <div class="total">
+    <div class="line">
+      <label>Subtotal</label><span class="value">{{order.subtotal | currency}}</span>
+    </div>
+    <div class="line">
+      <label>Delivery fee</label><span class="value">{{order.deliveryFee | currency}}</span>
+    </div>
+    <div class="line total">
+      <label>Total</label><span class="value">{{order.total | currency}}</span>
+    </div>
+  </div>
+</div>

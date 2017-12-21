@@ -1,0 +1,5 @@
+<ul class="popup--allergy__allergies">
+	<li *ngFor="let allergy of allergies"><input [checked]="bundleAllergies.indexOf(allergy) != -1" (click)="toggle(allergy, $event.target.checked)" class="popup--allergy__include" type="checkbox"> <label>{{allergy.title}}</label> <span class="popup--allergy__amount">{{total(allergy) | currency}}</span></li>
+</ul>
+<p>These automatically apply to each affected meal (ie: wholewheat pasta containing gluten will be substituted with rice or potatoes), with a service surcharge per meal.</p>
+<button (click)="save()" class="popup--allergy__save">Save</button>

@@ -1,0 +1,14 @@
+<div class="body">
+	<step-progress [bundle]="bundle"></step-progress>
+	<ul class="meal-plans">
+	  <li *ngFor="let mealPlan of mealPlans" [attr.data-background-image]="mealPlan.icon" [attr.data-meal-plan]="mealPlan._id" [class.selected]="bundle.mealPlan && bundle.mealPlan._id == mealPlan._id" (click)="selectMealPlan(mealPlan)"><span class="name">{{mealPlan.name}}</span>
+	    <p>{{mealPlan.description}}</p>
+	  </li>
+	</ul>
+</div>
+
+<div class="footer">
+	<a class="login" *ngIf="!user" (click)="account(); false"><strong>Log in</strong> to use saved preferences.</a>
+	<span class="instruction" *ngIf="!bundle.mealPlan">Select your meal plan to continue.</span>
+	<a href="#" class="next" *ngIf="bundle.mealPlan" (click)="next(); false">select your portion</a>
+</div>

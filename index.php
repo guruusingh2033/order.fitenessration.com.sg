@@ -1,0 +1,111 @@
+<?php
+define('VERSION', '1.0.3');
+$mongo = new MongoClient('mongodb://fitnessration:FVUniRQN9k@localhost/fitnessration');
+$document = ['component' => 'order-wizard', 'timestamp' => gmdate('Y-m-d H:i:s'), 'ip' => $_SERVER['REMOTE_ADDR'], 'auth' => $_COOKIE['auth'], 'url' => "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", 'userAgent' => $_SERVER['HTTP_USER_AGENT']];
+$mongo->fitnessration->{'analytics.visits'}->insert($document);
+$visitId = $document['_id'];
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="apple-touch-icon" sizes="57x57" href="app/common/images/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="app/common/images/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="app/common/images/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="app/common/images/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="app/common/images/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="app/common/images/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="app/common/images/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="app/common/images/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/common/images/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="app/common/images/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="app/common/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="app/common/images/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="app/common/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="app/common/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="app/common/fonts/mission-gothic/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="app/common/fonts/league-spartan/stylesheet.css">
+
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <title>Order Wizard</title>
+    <meta name="viewport" content="width=320, user-scalable=no"/>
+    <style type="text/css">
+      #__bs_notify__ { display: none !important }
+    </style>
+
+    <script type="text/javascript">
+    var g_preloadedData = <?php 
+
+    $data = file_get_contents($_GET['reorder'] ? "http://localhost:3006/order-wizard?order=$_GET[reorder]" : 'http://localhost:3006/order-wizard');
+    $data = json_decode($data);
+    if (!$data) {
+        $mongo->fitnessration->{'analytics.visits'}->update(['_id' => $visitId], ['$set' => ['dataLoaded' => false]]);
+        echo 'null';
+    }
+    else {
+        $mongo->fitnessration->{'analytics.visits'}->update(['_id' => $visitId], ['$set' => ['dataLoaded' => true]]);
+        echo json_encode($data);
+    }
+    ?>;
+    </script>
+  
+    <link rel="stylesheet" href="/dist/app/styles/layout.css">
+    <script type="text/javascript" src="/env.js"></script>
+    <!-- <script type="text/javascript" href="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/node_modules/braintree-web/dist/braintree.js"></script>
+
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script type="text/javascript" src="app/common/scripts/background-image.js"></script>
+    <script type="text/javascript" src="dist/app/config.js"></script>
+
+    <!-- BEGIN TRACKJS -->
+    <script type="text/javascript">window._trackJs = { token: '749effbb612d4d149a5e14a9b4489fcf', application: 'Order Wizard', version: '<?php echo VERSION ?>' };</script>
+    <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+    <!-- END TRACKJS -->
+
+    <script src="dist/app/main.bundle.js?<?php echo VERSION ?>"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+        document.body.addEventListener('submit', function(event) {
+        var form = event.target;
+          if (!event.target.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+            var inputFields = form.querySelectorAll('input');
+            for (i=0; i < inputFields.length; i++) {
+              if (!inputFields[i].validity.valid) {
+                inputFields[i].focus();
+                inputFields[i].classList.add('invalid');
+                function removeInvalid(event) {
+                    event.target.classList.remove('invalid');
+                    event.target.removeEventListener('keypress', removeInvalid);
+                }
+                inputFields[i].addEventListener('keypress', removeInvalid);
+                return false;
+              }
+            }
+          }
+        }, true);
+    </script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1029120713823087";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <order-wizard class="meal-plan"></order-wizard>
+  </body>
+</html>

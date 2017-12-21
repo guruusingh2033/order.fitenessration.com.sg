@@ -1,0 +1,17 @@
+<div class="body">
+  <step-progress [bundle]="bundle"></step-progress>
+  <ul class="bundles">
+    <li *ngFor="let bundleType of bundleTypes" [class.selected]="bundle.type && bundle.type._id == bundleType._id" (click)="selectBundleType(bundleType)" [attr.data-background-image]="bundleType.icon">
+      <span class="name">{{bundleType.name}}</span>
+      <span class="price">{{bundleType.price | currency}}</span>
+      <p class="description">{{bundleType.description}}</p>
+      <!-- <p class="description">4 basic + 1 premium meals.</p> -->
+
+      <p class="perks">{{perks(bundleType)}}</p>
+    </li>
+  </ul>
+</div>
+<div class="footer">
+  <span class="instruction" *ngIf="!bundle.type">Select a bundle to continue.</span>
+  <a href="#" class="next" *ngIf="bundle.type" (click)="next(); false">select your meals</a>
+</div>

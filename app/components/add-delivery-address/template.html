@@ -1,0 +1,10 @@
+<form (submit)="save(); false">
+  <div class="field">
+    <textarea [(ngModel)]="address" name="address" required></textarea>
+  </div>
+  <div class="field postal-code">
+    <label>Postal Code</label>
+    <input [(ngModel)]="postalCode" name="postalCode" type="text" required>
+  </div>
+  <input type="submit" value="Save">
+</form>

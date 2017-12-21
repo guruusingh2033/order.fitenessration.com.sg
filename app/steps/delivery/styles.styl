@@ -1,0 +1,133 @@
+@import '../../styles/_header'
+:host
+	.body
+		desktop_layout_side-column 'form' '.summary'
+		m-padding 0
+		form
+			d-font-size 20px
+			d-width 547px
+			> .field, .field-group, .section
+				m-padding 0 14px
+				&:not(:first-child)
+					r-padding-top 16px 10px
+					r-margin-top 16px 10px
+					border-top 1px solid $border-color
+			.note
+				width 100%
+				color #A0A0A0
+				r-font-size 20px 13px
+			.field
+				textarea
+					r-height 96px 56px
+				.checkbox
+					display block
+					r-size 25px 25px 13px 14px
+					flex 0 0 auto
+					&.checked
+						r-image '/app/common/images/checkbox-checked.%.png' 25 13
+					&:not(.checked)
+						r-image '/app/common/images/checkbox-unchecked.%.png' 25 13
+				&.checkbox
+					display flex
+					align-items center
+					label
+						margin 0 15px 0 0
+				&.postal-code
+					display flex
+					align-items center
+					label
+						r-font-size 22px 13px
+						margin 0 15px 0 0
+						color #A0A0A0
+				&.fulfillment-date
+					position relative
+					input[type="text"]
+						cursor pointer
+						background white url(/app/common/images/calendar.svg) no-repeat top 8px right 10px
+						m-background-size 20px
+						m-background-position(top 3px right 5px)
+					calendar
+						border 1px solid $border-color
+						position absolute
+						m-width 292px
+						z-index 1
+				&.fulfillment-time
+					select
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						&::-ms-expand
+							display: none
+						field-text()
+						background white url(/app/common/images/dropdown-arrow.svg) no-repeat top right
+						background-size contain
+						// m-background-position(top 3px right 5px)
+			> .field, .field-group
+				.note
+					margin-top 17px
+			.field-group
+				display flex
+				flex-wrap wrap
+				.field
+					&:not(:first-child)
+						margin-left 20px
+					flex-grow 1
+					flex-basis 0
+			.section
+				> *
+					&:not(:first-child)
+						margin-top 14px
+				&.delivery-address
+					&.disabled
+						> *
+							pointer-events none
+							opacity .4
+			.name, .phone-number
+				color #6A6A6A
+				r-font-size 20px 15px
+			.address-selection
+				option-list-container()
+				.add-wrapper
+					+on-mobile()
+						margin-left-right -14px 
+						padding-left-right 14px
+					margin-top 10px
+					padding-top-bottom 10px
+					.add
+						margin-bottom 10px
+			.field-group.delivery-type .field:first-child
+				r-width 150px 82px
+				flex 0 0 auto
+			.disposable-cutlery
+				align-items center
+				label
+					flex 0 0 auto
+				.note
+					margin 0 0 0 8px
+		.summary >>>
+			@media desktop
+				order
+					order_side-summary_desktop()
+					.delivery-date-time, .delivery-address, .extra
+						display none
+			@media mobile
+				display none
+
+	.footer
+		+on-desktop()
+			display flex
+			justify-content center
+			padding-bottom 10px
+		>
+			+on-desktop()
+				.next
+					width 465px
+					margin 0 0 0 10px
+		.next:before
+			content ''
+		.use-promo-code
+			dark-footer-item()
+			background-color $accent-b-background-color
+			+on-desktop()
+				round-footer-item()
+				width 465px

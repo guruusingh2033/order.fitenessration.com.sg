@@ -1,0 +1,20 @@
+<div class="header">
+  <button type="button" class="prev" (click)="prevMonth()">Prev</button>
+  <!-- <button (click)="currentMonth()">Today</button> -->
+  <button type="button" class="next" (click)="nextMonth()">Next</button>
+  <span class="month">{{monthName(month.getMonth())}}</span>
+  <div class="days">
+    <span class="day">S</span>
+    <span class="day">M</span>
+    <span class="day">T</span>
+    <span class="day">W</span>
+    <span class="day">T</span>
+    <span class="day">F</span>
+    <span class="day">S</span>
+  </div>
+</div>
+<div *ngFor="let week of weeks(month)" class="week">
+  <span *ngFor="let day of week" class="day" (click)="dateSelected(day)" [class.loading]="true" [class.other-month]="day.getMonth() != month.getMonth()" [class.available]="!_dateSet || _dateSet.test(day)" [class.today]="today.valueOf() == day.valueOf()" [class.selected]="selectedDate && day.valueOf() == selectedDate.valueOf()">
+    <span class="date">{{day.getDate()}}</span>
+  </span>
+</div>

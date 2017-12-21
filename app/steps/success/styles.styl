@@ -1,0 +1,29 @@
+@import '../../styles/_header'
+:host
+	.body
+		@media desktop
+			width 492px
+			padding-top 143px
+			background no-repeat top 57px center
+		@media mobile
+			padding-top 80px
+			background no-repeat top 4px center
+		text-align center
+		r-image '/app/common/images/check.%.png' 91 70
+		h3, p
+			color $accent-color
+		h3
+			font-weight normal
+			r-font-size 40px 24px
+			font-family 'League Spartan'
+		p
+			margin-bottom 70px
+			r-font-size 30px 18px
+		a
+			color $secondary-text-color
+			text-decoration underline
+			font-weight bold
+			r-font-size 24px 17px
+	.footer
+		.next:before
+			content ''

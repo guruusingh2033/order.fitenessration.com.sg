@@ -1,0 +1,5 @@
+<label>Allergy</label>
+<p class="none" *ngIf="!bundle.allergies.length">None</p>
+<ul class="allergies" *ngIf="bundle.allergies.length">
+  <li *ngFor="let allergy of bundle.allergies"><span class="type">{{allergy.title}}</span><span class="amount">{{total(allergy) | currency}}</span></li>
+</ul>

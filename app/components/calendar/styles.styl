@@ -1,0 +1,73 @@
+@import '../../styles/_header'
+:host
+	&.loading
+		&:before
+			content 'Loading...'
+			height 30px
+			position absolute
+			left 0
+			right 0
+			top 0
+			bottom 0
+			margin auto
+			text-align center
+		.week 
+			visibility hidden
+	display block
+	width 320px
+	background-color #FBF4ED
+	.day
+		display block
+		square 25px
+		margin-left-right 9px
+		text-align center
+	.header
+		height 60px
+		padding-top 1px
+		position relative
+		background-color #FAE9D9
+		.prev, .next
+			position absolute
+			top 5px
+		.prev
+			left 10px
+		.next
+			right 10px
+		.month
+			display block
+			margin-top 3px
+			text-align center
+			text-transform uppercase
+			font-size 16px
+		.days
+			display flex
+			justify-content center
+			position absolute
+			width 100%
+			bottom 7px
+			.day
+				line-height 25px
+				text-align center
+				font-size 15px
+				font-weight 100
+	.week
+		display flex
+		justify-content center
+		.day
+			cursor pointer
+			font-size 20px
+			color #4A4A4A
+			margin-top-bottom 6px
+			&.today
+				font-weight bold
+			// 	background-color #eee
+			&:not(.available)
+				color #DEE0E4
+				cursor default
+			&.other-month
+				color #ddd
+				visibility hidden
+			&.selected
+				border-radius 100%
+				background-color #6A6A6A
+				color white

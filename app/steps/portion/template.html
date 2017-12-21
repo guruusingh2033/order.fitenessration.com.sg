@@ -1,0 +1,12 @@
+<div class="body">
+	<step-progress [bundle]="bundle"></step-progress>
+	<ul class="portions">
+	  <li *ngFor="let portion of portions" [attr.data-background-image]="portion.icon" [class.selected]="bundle.portion && bundle.portion._id == portion._id" (click)="selectPortion(portion)"><span class="name">{{portion.name}}</span>
+	    <p class="description">{{portion.description}}</p>
+	  </li>
+	</ul>
+</div>
+<div class="footer">
+	<span class="instruction" *ngIf="!bundle.portion">Select a portion to continue.</span>
+	<a href="#" class="next" *ngIf="bundle.portion" (click)="next(); false">select your bundle</a>
+</div>

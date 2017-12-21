@@ -1,0 +1,232 @@
+desktop-content-width = 936px
+@import '_header'
+:host
+	display block
+	margin 0 auto
+	@media mobile
+		width 320px 
+	// --- step progress --- //
+	&.meal-plan >>> .body .steps
+		// &:after
+		li.portion, li.bundle
+			color #DEE0E4
+			span
+				background-color #DEE0E4
+				background-image none !important
+	&.portion >>> .body .steps
+	&.bundle >>> .body .steps
+		li.bundle
+			color #DEE0E4
+			span
+				background-color #DEE0E4
+				background-image none !important
+	@media desktop
+		&.portion >>> .body .steps
+		&.bundle >>> .body .steps
+			&:before
+				border-left 390px solid $accent-color
+		&.meals >>> .body .steps
+			&:before
+				border-left 828px solid $accent-color
+	@media mobile
+		&.meal-plan >>> .body .steps
+			&:after
+				width 76px
+		&.portion >>> .body .steps
+		&.bundle >>> .body .steps
+			&:after
+				width 153px
+
+	>>>
+		&.show-steps
+			.header
+				border-bottom 10px solid #A0A0A0
+		// --- header --- //
+		> .header
+			z-index 1
+			r-width 100% 320px
+			box-sizing content-box
+			font-family 'League Spartan'
+			color #3A3E42
+			background-color #FAE9D9
+			@media mobile
+				height 67px
+				position fixed
+				top 0
+				z-index 1
+				font-size 16px
+			@media desktop
+				height 150px
+				position relative
+				font-size 28px
+			.step
+				display block
+				height 100%
+				text-align center
+				@media mobile
+					line-height 73px
+				@media desktop
+					line-height 150px
+			.prev
+				display block
+				margin auto
+				position absolute
+				top 0
+				bottom 0
+				font-size 0
+				@media desktop
+					width 20px
+					height 34px
+					left 'calc(50% - %s)' % (828px/2 - 5)
+				@media mobile
+					width 10px
+					height 17px
+					left 15px
+				r-image '/app/common/images/left-arrow.%-secondary-text.png' 20 10
+			.close
+				margin auto
+				position absolute
+				top 0
+				bottom 0
+				font-size 0
+				@media desktop
+					width 30px
+					height 30px
+					left 'calc(50% + %s)' % (828px/2 - 30 - 5)
+				@media mobile
+					width 11px
+					height 11px
+					right 20px
+				r-image '/app/common/images/close.%.png' 30 11
+		// --- body --- //
+		.body
+			@media desktop
+				width 936px
+				margin 0 auto
+				padding-bottom 200px
+				padding-top 50px
+			@media mobile
+				margin-top 92px
+				margin-bottom 133px
+				padding 0 20px
+				> *:first-child
+					margin-top 30px
+			// --- steps --- //
+			.steps
+				display flex
+				position relative
+				z-index 1
+				@media desktop
+					width 828px
+					height 50px
+					margin -77px auto 80px
+					justify-content space-between
+					font-size 20px
+					font-weight bold
+					white-space nowrap
+				@media mobile
+					position fixed
+					height 35px
+					width 320px
+					top 48px
+					left 0
+					right 0
+					margin 0 auto
+					justify-content center
+					font-size 0
+				&:after
+					background #EC5623
+					@media desktop
+						width 795px
+						margin 0 auto
+						display none		
+					@media mobile
+						width 100%
+						left 0
+				&:before
+					background #DEE0E4
+					@media desktop
+						width 795px
+						margin 0 auto
+						box-sizing border-box
+					@media mobile
+						left 0
+						right 0
+				&:after, &:before
+					content ''
+					position absolute
+					z-index 0
+					@media desktop
+						height 11px
+						top calc(50% - 11px/2)
+					@media mobile
+						height 5px
+						top calc(50% - 5px/2)
+				li
+					z-index 1
+					color #EC5623
+					@media desktop
+						width 80px
+						padding-top 10px
+						text-align center
+						&:first-child
+							margin-left -16px
+						&:last-child
+							margin-right -16px
+					@media mobile
+						width 35px
+						&:not(:first-child)
+							margin-left 50px
+					span
+						display block
+						border-radius 100px
+						background #EC5623 no-repeat center
+						background-image-colors({'000000':$background-b-color, 'FFFFFF':$accent-color})
+
+						@media desktop
+							square 50px
+							margin -11px auto 10px
+						@media mobile
+							square 35px
+					
+					&[data-meal-plan] span
+						r-background-size 26px 19px
+					&[data-portion] span
+						r-background-size 24px 19px
+					&.bundle span
+						r-background-size 24px 17px
+					// &[data-type="5-meal"] span
+					// 	background-image url('/app/common/images/5-meal.22-background-b.png')
+					// &[data-type="10-meal"] span
+					// 	background-image url('/app/common/images/10-meal.22-background-b.png')
+					// &[data-type="15-meal"] span
+					// 	background-image url('/app/common/images/15-meal.22-background-b.png')
+		// --- footer --- //
+		.footer
+			r-width 100% 320px
+			position fixed
+			bottom 0
+			@media mobile
+				background-color white
+			&, button
+				@media desktop
+					font-size 20px 
+				@media mobile
+					font-size 12px
+			// *:not(:first-child)
+			// 	margin-top 1px
+			> a, button
+				footer-item()
+			.next
+				dark-footer-item()
+				@media desktop
+					round-footer-item()
+					width 623px
+					margin 0 auto 10px
+					background-position center right 40px
+				r-image '/app/common/images/right-arrow.%-accent-foreground.png' 32 10
+			.instruction
+				footer-item()
+				color $secondary-text-color
+				background $background-a-color
+				

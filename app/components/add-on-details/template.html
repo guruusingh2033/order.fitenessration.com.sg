@@ -1,0 +1,16 @@
+<div class="pictures">
+	<button class="prev" (click)="prevImage()">Previous</button>
+	<button class="next" (click)="nextImage()">Next</button>
+	<ul>
+		<li *ngFor="let image of addOn.images; let i = index" class="picture" [class.current]="currentImage == i" [ngStyle]="{'background-image': 'url(' + image + ')'}"></li>
+	</ul>
+</div>
+<span class="name">{{addOn.name}}</span>
+<p class="description">{{addOn.description}}</p>
+<div class="specifications">
+	<label>Specifications:</label> <span class="value">{{addOn.specifications}}</span>
+</div>
+<div class="flavors">
+	<label>Flavours:</label>
+	<div class="value">{{addOn.variants.join(', ')}}</div>
+</div>

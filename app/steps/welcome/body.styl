@@ -1,0 +1,42 @@
+@import '../../styles/_header'
+:host.body
+	display block
+	padding-top 40px
+	.photo
+		width 75px
+		height 75px
+		display block
+		margin 0 auto 20px
+		background-image url(/app/common/images/user-photo-placeholder.png)
+	.name
+		display block
+		width 146px
+		padding-bottom 10px
+		margin 0 auto
+		border-bottom 1px solid #979797
+		font-size 18px
+		font-family 'League Spartan'
+		font-weight bold
+		text-align center
+	.meal-plan, .portion
+		width 118px
+		margin 0 auto
+		font-size 18px
+	.meal-plan, .portion
+		display block
+		height 23px
+		margin-top 5px
+		padding-left 27px
+		background no-repeat left center
+	.meal-plan
+		background-position 0px center
+		&[data-meal-plan='heavy-duty']
+			background-image url('/app/common/images/heavy-duty.17-secondary-text.png')
+		&[data-meal-plan='lean-on-me']
+			background-image url('/app/common/images/lean-on-me.17-secondary-text.png')
+	.portion
+		background-position 1px center
+		&[data-portion='for-him']
+			background-image url('/app/common/images/for-him.14-secondary-text.png')
+		&[data-portion='for-her']
+			background-image url('/app/common/images/for-her.14-secondary-text.png')

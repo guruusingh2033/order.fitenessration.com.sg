@@ -1,0 +1,17 @@
+<div class="body">
+  <ul class="items">
+    <li *ngFor="let b of bundles">
+      <bundle-summary [bundle]="b" class="details"></bundle-summary>     
+      <bundle-allergies [bundle]="b" class="allergy"></bundle-allergies>
+      <bundle-premium [bundle]="b"></bundle-premium>
+      <div class="subtotal">
+        <label>Subtotal</label><span class="value">{{b.total | currency}}</span>
+      </div>
+      <a href="#" (click)="updateAllergyNote(b); false" class="update-allergy-note">Update Allergy Note</a>
+    </li>
+  </ul>
+</div>
+<div class="footer">
+	<a href="#" class="add-another-bundle" (click)="addAnotherBundle(); false">Add another bundle</a>
+	<a href="#" class="next" (click)="next(); false">Next</a>
+</div>

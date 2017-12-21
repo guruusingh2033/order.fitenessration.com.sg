@@ -1,0 +1,5 @@
+<div class="field">
+	<input type="text" class="promo-code" [(ngModel)]="promoCode">
+</div>
+<p class="error" *ngIf="errorString">{{errorString}}</p>
+<button (click)="apply()">Apply</button>

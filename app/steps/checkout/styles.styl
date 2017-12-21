@@ -1,0 +1,24 @@
+@import '../../styles/_header'
+:host
+	.body
+		order >>>
+			@media mobile
+				container()
+				order_item_mobile()
+			@media desktop
+				order_side-summary_desktop()
+				desktop_layout_side-column '.bundles' '.order-info'
+				.bundles
+					display flex
+					flex-wrap wrap
+					border-bottom none
+					> li
+						width 291px
+						margin-bottom 30px
+						border-bottom 1px solid $border-color
+						&:not(:first-child)
+							margin-top 0
+							border-top 0
+							padding-top 0
+						&:nth-child(2n)
+							margin-left 30px

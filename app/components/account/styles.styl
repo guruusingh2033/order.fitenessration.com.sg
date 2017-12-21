@@ -1,0 +1,32 @@
+@import '../../styles/_header'
+:host
+	display block
+	form
+		&.sign-up, &.login
+			border-bottom 1px solid $border-color
+			padding-bottom 18px
+			margin-bottom 8px
+	.facebook
+		display block
+		width 242px
+		height 37px
+		margin-bottom 20px
+		background-image url(/app/common/images/facebook-login.png)
+		font-size 0
+	input[type="submit"], button
+		button()
+		margin-top 10px
+	.field
+		margin-bottom 10px
+	.forgot-your-password
+		display block
+		margin-top 10px
+		font-size 14.5px
+		font-weight bold
+		text-align center
+	p:not(.error)
+		font-weight bold
+		text-align center
+		margin 0 0 30px 0
+	.error
+		color #d0021b

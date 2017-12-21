@@ -1,0 +1,13 @@
+<options showSteps="false" showPrev="false" />
+
+<title>Welcome back</title>
+<main>
+	<picture class="photo"></picture>
+	<span class="name">{{user.profile.firstName}}</span>
+	<span *ngIf="user.profile.preferences.mealPlan" class="meal-plan" [attr.data-meal-plan]="user.profile.preferences.mealPlan">{{user.profile.preferences.mealPlan | display}}</span>
+	<span *ngIf="user.profile.preferences.portion" class="portion" [attr.data-portion]="user.profile.preferences.portion">{{user.profile.preferences.portion | display}}</span>
+</main>
+<footer>
+	<a class="edit-preferences" (click)="false">Edit Your Preferences</a>
+	<a href="#" class="next" (click)="next()">Select your bundle</a>
+</footer>

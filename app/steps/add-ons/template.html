@@ -1,0 +1,26 @@
+<div class="body">
+  <div class="summary" [class.show]="showSummary">
+    <order [order]="order"></order>
+  </div>
+<!--   <ul class="sections-nav">
+    <li *ngFor="let cat of categories()" [class.active]="cat == currentCategory" (click)="currentCategory = cat; false"><a href="#">{{cat}}</a></li>
+  </ul>
+ -->  <ul class="add-ons">
+    <li *ngFor="let addOn of addOnsForCategory(currentCategory)">
+      <picture [ngStyle]="{'background-image':'url(' + addOn.images[0] + ')'}"></picture>
+      <span class="name">{{addOn.name}}</span>
+      <p class="description">{{addOn.description}}</p>
+      <a href="#" (click)="showDetails(addOn); false" class="details">Details</a>
+      <ul class="variants">
+        <li *ngFor="let variant of addOn.variants">
+          <label>{{variant}}</label>
+          <div class="quantity"><a href="#" class="decrease" (click)="decrease(addOn, variant); false">-</a><span class="value">{{quantity(addOn, variant)}}</span><a href="#" class="increase" (click)="increase(addOn, variant); false">+</a></div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div class="footer">
+  <a class="view-order-summary" [class.open]="showSummary" (click)="toggleSummary()">View order summary</a>
+  <a href="#" class="next" (click)="next(); false">Proceed to delivery options</a>
+</div>

@@ -1,0 +1,34 @@
+<div class="pictures">
+	<button class="prev" (click)="prevImage()">Previous</button>
+	<button class="next" (click)="nextImage()">Next</button>
+	<ul>
+		<li class="picture" [class.current]="currentImage == 0" [ngStyle]="{'background-image': 'url(' + meal.primaryImage + ')'}"></li>
+		<li class="picture" [class.current]="currentImage == 1" [ngStyle]="{'background-image': 'url(' + meal.secondaryImage + ')'}"></li>
+	</ul>
+</div>
+
+<span class="name">{{meal.name}}</span>
+<ul class="sides">
+	<li *ngFor="let side of meal.sides">{{side.name}}</li>
+</ul>
+<p class="description">{{meal.description}}</p>
+<div class="facts">
+	<div class="group">
+		<span class="fact"><label>Calories (kcal)</label> <span class="value">{{meal.nutritionFacts.calories}}</span></span>
+		<span class="fact"><label>Carbohydrates (g)</label> <span class="value">{{meal.nutritionFacts.carbohydrates}}</span></span>
+		<span class="fact"><label>Fat (g)</label> <span class="value">{{meal.nutritionFacts.fat}}</span></span>
+		<span class="fact"><label>Protein (g)</label> <span class="value">{{meal.nutritionFacts.protein}}</span></span>
+	</div>
+	<div class="group">
+		<span class="fact"><label>Fibre (g)</label> <span class="value">{{meal.nutritionFacts.fiber}}</span></span>
+		<span class="fact"><label>Sodium (g)</label> <span class="value">{{meal.nutritionFacts.sodium}}</span></span>
+		<span class="fact"><label>Sugar (g)</label> <span class="value">{{meal.nutritionFacts.sugar}}</span></span>
+	</div>
+</div>
+<div class="contains">
+	<label>Contains:</label> <span class="contents">{{meal.ingredientsString}}.</span>
+	<div class="icons">
+		<picture [attr.data-background-image]="meal.mainIngredient.icon"></picture>
+		<picture *ngFor="let ingredient of meal.allergens" [attr.data-background-image]="ingredient.icon"></picture>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+/node_modules
+.DS_Store
+/npm-debug.log
+/app/config.ts
+/dist/app/config.js
+/dist/app/config.js.map
+/app/styles/_env.styl
+/dist/**/*.css
+*.sublime-project
+*.sublime-workspace
+/env.js

@@ -1,0 +1,9 @@
+<span class="bundle" [class.sale]="bundle.promotion" [attr.data-background-image]="bundle.type.icon">
+  <span class="name">{{bundle.type.name}}</span>
+  <span class="price">{{bundle.type.price | currency}}</span>
+</span>
+<div class="promotion" *ngIf="bundle.promotion">
+  <label>{{bundle.promotion.name}}</label><span class="value">{{bundle.promotionDisplay}}</span>
+</div>
+<span [attr.data-background-image]="bundle.mealPlan.icon" class="meal-plan">{{bundle.mealPlan.name}}</span>
+<span [attr.data-background-image]="bundle.portion.icon" class="portion">{{bundle.portion.name}}</span>

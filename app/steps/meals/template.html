@@ -1,0 +1,48 @@
+<div class="body">
+  <step-progress [bundle]="bundle"></step-progress>
+  <div class="summary">
+    <bundle [bundle]="bundle" allergies="false"></bundle>
+  </div>
+  <ul class="sections-nav">
+    <li [class.active]="tab == 'basic'" (click)="tab = 'basic'; false"><a href="#">Basic</a></li>
+    <li [class.active]="tab == 'premium'" (click)="tab = 'premium'; false"><a href="#">Premium</a></li>
+  </ul>
+  <div class="types">
+    <div class="type" [class.active]="tab == 'basic'">
+      <h3>Basic</h3>
+      <ul class="meals">
+        <li *ngFor="let meal of meals.basic" [attr.mealId]="meal._id">
+          <picture [ngStyle]="{'background-image':'url(' + meal.primaryImage + ')'}"></picture>
+          <span class="name">{{meal.name}}</span>
+          <ul class="sides">
+            <li *ngFor="let side of meal.sides">{{side.name}}</li>
+          </ul><a href="#" (click)="showDetails(meal)" class="details">Details</a>
+          <div class="quantity"><a href="#" class="decrease" (click)="decrease(meal); false">-</a><span class="value">{{quantity(meal)}}</span><a href="#" class="increase" (click)="increase(meal); false">+</a></div>
+        </li>
+      </ul>
+    </div>
+    <div class="type" [class.active]="tab == 'premium'">
+      <h3>Premium</h3>
+      <ul class="meals">
+        <li *ngFor="let meal of meals.premium" [attr.mealId]="meal._id">
+          <picture [ngStyle]="{'background-image':'url(' + meal.primaryImage + ')'}"></picture>
+          <span class="name">{{meal.name}}</span>
+          <ul class="sides">
+            <li *ngFor="let side of meal.sides">{{side.name}}</li>
+          </ul><a href="#" (click)="showDetails(meal)" class="details">Details</a>
+          <div class="quantity"><a href="#" class="decrease" (click)="decrease(meal); false">-</a><span class="value">{{quantity(meal)}}</span><a href="#" class="increase" (click)="increase(meal); false">+</a></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="meals" *ngIf="showSelectedMeals">
+    <ul>
+      <li *ngFor="let mealSelection of bundle.mealSelections"><span class="count">{{mealSelection.quantity}}</span> <span class="name">{{mealSelection.meal.name}}</span></li>
+    </ul>
+  </div>
+	<button class="view-meals" [class.open]="showSelectedMeals" (click)="toggleSelectedMeals()">View <span class="count">{{totalQuantity()}}</span> meals selected</button>
+	<a href="#" *ngIf="!remainingMeals()" class="next" (click)="next(); false">confirm your bundle</a>
+  <p class="instruction" *ngIf="remainingMeals()">Select <span class="remaining-meals">{{remainingMeals()}} meals</span> to continue. <span *ngIf="meals.premium.length" class="premium-price"><b>Premium</b> meals <b>+ {{premiumPrice() | currency}} onwards.</b></span></p>
+</div>
